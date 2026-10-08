@@ -324,6 +324,8 @@ nav {
   color: var(--ink); line-height: 1.4; margin-bottom: 0.4rem;
 }
 .paper-meta { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.75rem; }
+.paper-authors { font-weight: 600; color: var(--blue); }
+.paper-journal { font-weight: 500; color: var(--blue-mid); font-style: italic; }
 .paper-abstract { font-size: 0.85rem; line-height: 1.75; font-weight: 300; }
 
 /* ── Data table ── */
@@ -352,7 +354,7 @@ nav {
   border-radius: 3px;
 }
 .pi-avatar {
-  width: 120px; height: 120px;
+  width: 150px; height: 150px;
   background: var(--blue);
   border-radius: 3px;
   display: flex; align-items: center; justify-content: center;
@@ -804,19 +806,12 @@ footer {
           <div class="hero-stat-label">Countries · Focus groups</div>
         </div>
         <div style="margin-top:1rem; padding-top:1.2rem; border-top:1px solid rgba(255,255,255,0.15);">
-          <img src="images/LOGO_ERC-FLAG_EU.png" alt="ERC – Funded by the European Union" style="height:80px; width:auto; background:#fff; padding:8px 14px; border-radius:3px;">
+          <img src="images/LOGO_ERC-FLAG_EU.png" alt="ERC – Funded by the European Union" style="height:110px; width:auto; background:#fff; padding:10px 16px; border-radius:3px;">
         </div>
       </div>
     </div>
   </div>
 
-  <div class="ribbon">
-    <div class="ribbon-inner">
-      <span class="ribbon-tag">ERC Consolidator Grant</span>
-      <span class="ribbon-sep">·</span>
-      <span>Losers' consent · Democratic legitimacy · Electoral behaviour · Affective polarisation</span>
-    </div>
-  </div>
 
   <div style="background:var(--blue); padding:2rem 2rem;">
     <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start;">
@@ -911,7 +906,7 @@ footer {
         <div><span class="paper-badge badge-pub">Publication</span></div>
         <div>
           <div class="paper-title">Following the Leader Against Democracy? Evidence From the 2022 Brazilian Presidential Election</div>
-          <div class="paper-meta">Fernando Mello &amp; Ignacio Jurado · <em>Politics and Governance</em>, Vol. 14, 2026</div>
+          <div class="paper-meta"><span class="paper-authors">Fernando Mello &amp; Ignacio Jurado</span> · <span class="paper-journal">Politics and Governance</span>, Vol. 14, 2026</div>
           <div class="paper-abstract">This study uses a five-wave panel survey from Brazil's 2022 presidential campaign to examine how political alignment and trust in elections interact. Drawing on within-between models that separate stable differences between voters from changes within individuals over time, we find that supporters of then-President Jair Bolsonaro consistently trusted the electronic voting system less than other voters. Among his supporters, trust was higher for those who expected him to win and lower for those who expected him to lose. Within-person analysis also shows that shifting vote intention toward Bolsonaro is associated with declining trust. Elite cues and outcome expectations jointly shape electoral trust.</div>
           <div style="margin-top:0.6rem;"><a href="https://doi.org/10.17645/pag.11547" target="_blank" rel="noopener" style="font-size:0.78rem; color:var(--blue-mid); text-decoration:none;">doi.org/10.17645/pag.11547 →</a></div>
         </div>
@@ -920,7 +915,7 @@ footer {
         <div><span class="paper-badge badge-wp">Working paper</span></div>
         <div>
           <div class="paper-title">Losing Elections and Democratic Consent in Polarized Contexts</div>
-          <div class="paper-meta">Ignacio Jurado &amp; Lluís Orriols</div>
+          <div class="paper-meta"><span class="paper-authors">Ignacio Jurado &amp; Lluís Orriols</span></div>
           <div class="paper-abstract">The study of democratic backsliding has overwhelmingly focused on winners and how they undermine institutions and democratic norms. The consent of electoral losers has received far less attention despite being equally central to democratic stability. As polarization intensifies, electoral defeat may be increasingly experienced as a threat rather than routine alternation of power. We conceptualize consent as acceptance of electoral outcomes and recognition of the winners' legitimacy to govern, going beyond standard reliance on satisfaction with democracy. Drawing on a pre-registered design in Spain — a polarized parliamentary democracy where the plurality winner was excluded from office in the 2023 election through a coalition agreement — we combine a five-wave panel (2023–2026) with vignette and conjoint experiments. Our results show that in a polarized context, electoral defeat generates an erosion of democratic consent that does not fade away over time. This erosion is driven by defeat itself, not by specific parliamentary dynamics of government formation. We also find a modest increase in the preference for anti-pluralistic candidates, but the erosion of consent does not translate into a full authoritarian backlash.</div>
         </div>
       </div>
@@ -928,7 +923,7 @@ footer {
         <div><span class="paper-badge badge-prog">In progress</span></div>
         <div>
           <div class="paper-title">Can Highlighting the Dangers of Polarization Increase Citizens' Willingness to Act? Evidence from Brazil</div>
-          <div class="paper-meta">Simon Chauchard, Ignacio Jurado &amp; Fernando Mello</div>
+          <div class="paper-meta"><span class="paper-authors">Simon Chauchard, Ignacio Jurado &amp; Fernando Mello</span></div>
           <div class="paper-abstract">Does making the concrete costs of polarization salient lead to recognition of the problem and to voluntary action against its consequences? We study this question through a multi-wave panel experiment conducted in Brazil during the 2026 general election. Respondents are randomly assigned to two interventions emphasizing either (a) the macro-level costs of polarization for democracy and the economy or (b) its micro-level costs for social and family relationships, or to a placebo control. We posit that awareness-raising treatments may increase the salience of polarization as an issue, increase willingness to act against its consequences, improve recognition of electoral results, and strengthen commitment to democratic norms.</div>
         </div>
       </div>
@@ -936,7 +931,7 @@ footer {
         <div><span class="paper-badge badge-prog">In progress</span></div>
         <div>
           <div class="paper-title">Electoral Delegitimization Rhetoric and Law Compliance</div>
-          <div class="paper-meta">Ignacio Jurado &amp; Josep Serrano-Serrat</div>
+          <div class="paper-meta"><span class="paper-authors">Ignacio Jurado &amp; Josep Serrano-Serrat</span></div>
           <div class="paper-abstract">While the relationship between electoral delegitimization and political violence has received growing scholarly attention — especially in the wake of January 6th, 2021 — less is known about its connection to less extreme forms of anti-regime behaviour, such as tax evasion or non-compliance with public health regulations. This paper argues that electoral trust shapes citizens' motivation to comply with the law, and that this link can be activated or suppressed by elite cues. We propose that delegitimizing rhetoric by political elites triggers identity-driven reasoning in voters, undermines attitudes towards the political system, and reduces willingness to comply with regulations. We test this argument through survey experiments fielded in Spain and the United States.</div>
         </div>
       </div>
@@ -1188,7 +1183,7 @@ footer {
   <div class="footer-inner">
     <div>
       <div class="footer-mark">CONSENT</div>
-      <div class="footer-copy">Losers' Consent in Established Democracies · ERC Project · IPP-CSIC, Madrid</div>
+      <div class="footer-copy">Losers' Consent in Established Democracies · ERC Consolidator Grant · IPP-CSIC, Madrid</div>
     </div>
     <ul class="footer-links">
       <li><a onclick="showPage('research')">Research</a></li>
