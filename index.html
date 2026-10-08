@@ -1,0 +1,1260 @@
+<title>CONSENT Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #FFFFFF;
+  --surface:  #F4F5F7;
+  --border:   #D8DCE3;
+  --border-strong: #9AA3B0;
+  --ink:      #1A1E28;
+  --body:     #3D4354;
+  --muted:    #6B7280;
+  --light:    #9AA3B0;
+  --blue:     #1F4E8C;
+  --blue-mid: #2E6AC2;
+  --blue-bg:  #EEF3FB;
+  --nav-bg:   rgba(255,255,255,0.97);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:       #12151C;
+    --surface:  #1C2030;
+    --border:   #2C3347;
+    --border-strong: #4A5568;
+    --ink:      #E8EAF0;
+    --body:     #A8B0C4;
+    --muted:    #6B7280;
+    --light:    #4A5568;
+    --blue:     #5B8DD9;
+    --blue-mid: #7AA3E8;
+    --blue-bg:  #1A2540;
+    --nav-bg:   rgba(18,21,28,0.97);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:       #12151C;
+  --surface:  #1C2030;
+  --border:   #2C3347;
+  --border-strong: #4A5568;
+  --ink:      #E8EAF0;
+  --body:     #A8B0C4;
+  --muted:    #6B7280;
+  --light:    #4A5568;
+  --blue:     #5B8DD9;
+  --blue-mid: #7AA3E8;
+  --blue-bg:  #1A2540;
+  --nav-bg:   rgba(18,21,28,0.97);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Nav ── */
+nav {
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 0; right: 0;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+}
+.nav-inner {
+  max-width: 1140px; margin: 0 auto;
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 1rem;
+  cursor: pointer; text-decoration: none;
+}
+.nav-logo-mark {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600; font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  color: var(--bg);
+  background: var(--blue);
+  padding: 0.28rem 0.6rem;
+  border-radius: 2px;
+}
+.nav-logo-text {
+  font-size: 0.8rem; font-weight: 400;
+  color: var(--muted); letter-spacing: 0.01em;
+}
+.nav-links { display: flex; gap: 0; list-style: none; }
+.nav-links a {
+  font-size: 0.8rem; font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0 1rem;
+  height: 60px;
+  display: flex; align-items: center;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  margin-bottom: -1px;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a.active { color: var(--blue); border-bottom-color: var(--blue); font-weight: 500; }
+
+/* ── Routing ── */
+.page-view { display: none; }
+.page-view.active { display: block; }
+
+/* ── Wrapper ── */
+.wrap { max-width: 1140px; margin: 0 auto; padding-inline: 2rem; }
+
+/* ── Hero ── */
+.hero {
+  padding-top: calc(60px + env(safe-area-inset-top, 0px));
+  background: var(--blue);
+}
+.hero-inner {
+  max-width: 1140px; margin: 0 auto;
+  padding: 5rem 2rem 4.5rem;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 4rem;
+  align-items: end;
+}
+.hero-project-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(0.78rem, 1.1vw, 0.88rem);
+  font-weight: 400;
+  font-style: italic;
+  color: rgba(255,255,255,0.6);
+  margin: 0.5rem 0 0.9rem;
+  line-height: 1.5;
+  max-width: 560px;
+}
+.hero-eyebrow {
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: clamp(1.9rem, 3.8vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+  margin-bottom: 1.8rem;
+  text-wrap: balance;
+  max-width: 640px;
+}
+.hero-desc {
+  font-size: 0.93rem; color: rgba(255,255,255,0.72);
+  font-weight: 300; line-height: 1.75; max-width: 560px;
+  margin-bottom: 2rem;
+}
+.hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.btn {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.8rem; font-weight: 500;
+  padding: 0.6rem 1.4rem;
+  border-radius: 2px;
+  cursor: pointer; border: none;
+  text-decoration: none;
+  display: inline-flex; align-items: center;
+  transition: all 0.15s;
+}
+.btn-white { background: #fff; color: var(--blue); }
+.btn-white:hover { background: #e8eef8; }
+.btn-ghost { background: transparent; color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.35); }
+.btn-ghost:hover { background: rgba(255,255,255,0.1); }
+.btn-primary { background: var(--blue); color: #fff; }
+.btn-primary:hover { background: var(--blue-mid); }
+.btn-outline { background: transparent; color: var(--blue); border: 1px solid var(--border); }
+.btn-outline:hover { border-color: var(--blue); }
+
+.hero-stats {
+  display: flex; flex-direction: column; gap: 1.6rem;
+  align-self: center;
+}
+.hero-stat-item {
+  border-left: 3px solid rgba(255,255,255,0.25);
+  padding-left: 1.2rem;
+}
+.hero-stat-num {
+  font-family: 'Source Serif 4', serif;
+  font-size: 2.4rem; font-weight: 300;
+  color: #fff; line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.hero-stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+
+/* ── Ribbon below hero ── */
+.ribbon {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2rem;
+}
+.ribbon-inner {
+  max-width: 1140px; margin: 0 auto;
+  display: flex; align-items: center; gap: 2rem;
+  font-size: 0.78rem; color: var(--muted);
+  flex-wrap: wrap;
+}
+.ribbon-tag {
+  background: var(--blue-bg);
+  color: var(--blue);
+  font-size: 0.7rem; font-weight: 500;
+  padding: 0.25rem 0.7rem; border-radius: 20px;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+.ribbon-sep { color: var(--border-strong); }
+
+/* ── Section ── */
+.section {
+  padding-block: 4rem;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-child { border-bottom: none; }
+.section-label {
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--blue); text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+#page-team .section-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.07em;
+}
+.section-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.55rem; font-weight: 400;
+  color: var(--ink); margin-bottom: 1.8rem;
+  letter-spacing: -0.01em; line-height: 1.3;
+}
+
+/* ── About ── */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+.about-text { font-size: 0.93rem; line-height: 1.8; margin-bottom: 1rem; }
+.about-text:last-child { margin-bottom: 0; }
+
+.rq-list { list-style: none; }
+.rq-item {
+  display: flex; gap: 1rem;
+  padding-block: 1.1rem;
+  border-top: 1px solid var(--border);
+  align-items: baseline;
+}
+.rq-item:last-child { border-bottom: 1px solid var(--border); }
+.rq-n {
+  font-size: 0.72rem; font-weight: 600;
+  color: var(--blue); min-width: 1.6rem;
+  padding-top: 0.05rem;
+}
+.rq-text { font-size: 0.88rem; line-height: 1.65; }
+
+/* ── Methods ── */
+.methods-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+}
+.method-card {
+  background: var(--bg);
+  padding: 2rem 1.6rem;
+}
+.method-icon {
+  width: 36px; height: 36px;
+  background: var(--blue-bg);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.2rem;
+}
+.method-icon svg { width: 18px; height: 18px; stroke: var(--blue); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.method-name { font-size: 0.88rem; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
+.method-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
+
+/* ── Page header ── */
+.page-head {
+  padding-top: calc(60px + env(safe-area-inset-top, 0px) + 3.5rem);
+  padding-bottom: 2.5rem;
+  border-bottom: 2px solid var(--blue);
+  margin-bottom: 0;
+}
+.page-head h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 400;
+  color: var(--ink); margin-bottom: 0.6rem;
+  letter-spacing: -0.015em; line-height: 1.15;
+}
+.page-head p { font-size: 0.9rem; color: var(--muted); max-width: 520px; line-height: 1.7; }
+
+/* ── Research papers ── */
+.paper {
+  display: grid; grid-template-columns: 100px 1fr;
+  gap: 2rem; padding-block: 2rem;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.paper:first-child { border-top: 1px solid var(--border); }
+.paper-badge {
+  display: inline-block;
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 0.3rem 0.6rem;
+  border-radius: 2px; white-space: nowrap;
+}
+.badge-wp { background: var(--surface); color: var(--body); border: 1px solid var(--border); }
+.badge-prog { background: var(--blue-bg); color: var(--blue); border: 1px solid #b8d0f0; }
+.badge-pub { background: #EAF4EE; color: #2A7A48; border: 1px solid #A8D5B8; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .badge-pub { background: #1A3328; color: #6FCF97; border-color: #2D6048; } }
+:root[data-theme="dark"] .badge-pub { background: #1A3328; color: #6FCF97; border-color: #2D6048; }
+.badge-pub { background: #e8f5ec; color: #1a6e3a; border: 1px solid #b2d8bd; }
+.paper-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.05rem; font-weight: 600;
+  color: var(--ink); line-height: 1.4; margin-bottom: 0.4rem;
+}
+.paper-meta { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.75rem; }
+.paper-abstract { font-size: 0.85rem; line-height: 1.75; font-weight: 300; }
+
+/* ── Data table ── */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  text-align: left; font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--border);
+  background: var(--surface);
+}
+.data-table td {
+  font-size: 0.85rem; padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--body); vertical-align: top;
+  line-height: 1.55;
+}
+.data-table tr:last-child td { border-bottom: none; }
+
+/* ── PI card ── */
+.pi-card {
+  display: grid; grid-template-columns: 120px 1fr;
+  gap: 2rem; padding: 2.5rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 3px;
+}
+.pi-avatar {
+  width: 120px; height: 120px;
+  background: var(--blue);
+  border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Source Serif 4', serif;
+  font-size: 2rem; font-weight: 300;
+  color: #fff;
+}
+.pi-name {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.3rem; font-weight: 400;
+  color: var(--ink); margin-bottom: 0.2rem; line-height: 1.2;
+}
+.pi-role-pi {
+  display: inline-block;
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--blue);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  margin-bottom: 0.4rem;
+}
+.pi-role { font-size: 0.75rem; color: var(--blue); font-weight: 500; margin-bottom: 0.1rem; }
+.pi-affil { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.9rem; }
+.pi-bio { font-size: 0.88rem; line-height: 1.75; font-weight: 300; max-width: 580px; }
+.pi-link {
+  display: inline-block; margin-top: 0.8rem;
+  font-size: 0.8rem; font-weight: 500; color: var(--blue); text-decoration: none;
+}
+.pi-link:hover { text-decoration: underline; }
+
+/* ── Team grid ── */
+.team-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.team-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 3px; padding: 2rem;
+  display: grid; grid-template-columns: 120px 1fr;
+  gap: 1.6rem; align-items: start;
+}
+.team-photo {
+  width: 120px; height: 120px; border-radius: 3px;
+  background: var(--border);
+  object-fit: cover; display: block;
+  flex-shrink: 0;
+}
+.team-photo-placeholder {
+  width: 120px; height: 120px; border-radius: 3px;
+  background: var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Source Serif 4', serif;
+  font-size: 1.8rem; font-weight: 400; color: var(--muted);
+  flex-shrink: 0;
+}
+.team-name { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 0.15rem; line-height: 1.3; }
+.team-role { font-size: 0.75rem; color: var(--blue); font-weight: 500; margin-bottom: 0.05rem; }
+.team-affil { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.8rem; }
+.team-bio { font-size: 0.82rem; color: var(--body); line-height: 1.7; font-weight: 300; margin-bottom: 0.7rem; }
+.team-link { font-size: 0.78rem; font-weight: 500; color: var(--blue); text-decoration: none; }
+.team-link:hover { text-decoration: underline; }
+
+/* ── News ── */
+.news-item {
+  display: grid; grid-template-columns: 100px 1fr;
+  gap: 2rem; padding-block: 1.8rem;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+.news-item:first-child { border-top: 1px solid var(--border); }
+.news-date { font-size: 0.75rem; color: var(--muted); }
+.news-title { font-size: 0.95rem; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
+.news-body { font-size: 0.85rem; line-height: 1.7; font-weight: 300; }
+
+/* ── News + Milestones two-column layout ── */
+.news-milestones-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+@media (max-width: 720px) {
+  .news-milestones-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+/* ── Milestones ── */
+.milestone-list { display: flex; flex-direction: column; }
+.milestone-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 2rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
+}
+.milestone-item:first-child { border-top: 1px solid var(--border); }
+.milestone-date {
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding-top: 0.15rem;
+}
+.milestone-date::before {
+  content: '';
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #2A9D6F;
+  flex-shrink: 0;
+}
+.milestone-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+}
+.milestone-body {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  font-weight: 300;
+}
+@media (max-width: 500px) {
+  .milestone-item { grid-template-columns: 1fr; gap: 0.3rem; }
+}
+
+/* ── Next up widget (inside about col) ── */
+.nextup-widget {
+  margin-top: 1.8rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.1rem 0.8rem;
+  background: var(--surface);
+}
+.nextup-widget-label {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.7rem;
+}
+.nextup-widget .nextup-block { gap: 0.4rem; }
+.nextup-widget .nextup-row {
+  padding: 0.55rem 0.7rem;
+  border-radius: 3px;
+}
+.nextup-widget .nextup-more { margin-top: 0.6rem; font-size: 0.75rem; }
+
+/* ── Next up (home) ── */
+.nextup-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.nextup-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1.4rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--blue-bg);
+  border-left: 3px solid var(--blue-mid);
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.nextup-row:hover { background: var(--border); }
+.nextup-date {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--blue-mid);
+  white-space: nowrap;
+  min-width: 88px;
+}
+.nextup-title {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.nextup-more {
+  font-size: 0.8rem;
+  color: var(--blue-mid);
+  font-weight: 500;
+  margin-top: 0.2rem;
+  display: inline-block;
+  cursor: pointer;
+}
+.nextup-more:hover { text-decoration: underline; }
+
+/* ── Upcoming cards ── */
+.upcoming-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.upcoming-card {
+  border: 1px solid var(--blue-mid);
+  border-radius: 6px;
+  padding: 1.1rem 1.3rem;
+  background: var(--blue-bg);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.upcoming-card-date {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--blue-mid);
+}
+.upcoming-card-title {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.35;
+}
+.upcoming-card-body {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+/* ── Work Packages ── */
+.wp-objectives {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+}
+.wp-objective {
+  background: var(--blue);
+  padding: 1.4rem 1.6rem;
+  color: #fff;
+}
+.wp-obj-num {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.6);
+  margin-bottom: 0.5rem;
+}
+.wp-obj-text {
+  font-size: 0.88rem; line-height: 1.5; font-weight: 400;
+}
+.wp-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.wp-card {
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1.8rem 1.6rem;
+  background: var(--surface);
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.wp-header { display: flex; flex-direction: column; gap: 0.5rem; }
+.wp-tag {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--blue);
+  background: var(--blue-bg);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.55rem; border-radius: 2px;
+  align-self: flex-start;
+}
+.wp-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1rem; font-weight: 600;
+  color: var(--ink); line-height: 1.35;
+}
+.wp-methods-block {
+  display: flex; flex-direction: column; gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.wp-method-item {
+  font-size: 0.82rem; font-weight: 500;
+  color: var(--blue);
+  background: var(--blue-bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0.45rem 0.75rem;
+  line-height: 1.4;
+}
+@media (max-width: 800px) {
+  .wp-objectives { grid-template-columns: 1fr; }
+  .wp-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Contact ── */
+.contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; }
+.ci-label {
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 0.3rem; margin-top: 1.5rem;
+}
+.ci-label:first-child { margin-top: 0; }
+.ci-val { font-size: 0.88rem; color: var(--ink); line-height: 1.65; }
+.ci-val a { color: var(--blue); text-decoration: none; }
+.ci-val a:hover { text-decoration: underline; }
+
+form { display: flex; flex-direction: column; gap: 1.2rem; }
+form label {
+  font-size: 0.72rem; font-weight: 600; color: var(--muted);
+  display: block; margin-bottom: 0.35rem; letter-spacing: 0.04em; text-transform: uppercase;
+}
+form input, form textarea {
+  width: 100%; padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border);
+  background: var(--bg); border-radius: 2px;
+  font-size: 0.88rem; font-family: 'IBM Plex Sans', sans-serif;
+  color: var(--ink); outline: none;
+  transition: border-color 0.15s;
+}
+form input:focus, form textarea:focus { border-color: var(--blue); }
+form textarea { resize: vertical; min-height: 120px; }
+#form-ok {
+  font-size: 0.85rem; color: var(--ink);
+  padding: 1rem 1.2rem; background: var(--blue-bg);
+  border: 1px solid #b8d0f0; border-radius: 2px;
+}
+
+/* ── Funder ── */
+.funder-row {
+  display: flex; align-items: center; gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1.5rem 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+.funder-by { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.funder-name { font-size: 0.9rem; font-weight: 500; color: var(--ink); }
+.funder-sub { font-size: 0.78rem; color: var(--muted); }
+
+/* ── Footer ── */
+footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding-block: 2.5rem;
+  margin-top: 0;
+}
+.footer-inner {
+  max-width: 1140px; margin: 0 auto; padding-inline: 2rem;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-mark { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; color: var(--ink); }
+.footer-copy { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+.footer-links { display: flex; gap: 1.8rem; list-style: none; }
+.footer-links a { font-size: 0.78rem; color: var(--muted); text-decoration: none; cursor: pointer; }
+.footer-links a:hover { color: var(--blue); }
+.footer-eu {
+  border-top: 1px solid var(--border);
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.footer-eu-logos {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+.eu-logo-placeholder {
+  width: 60px; height: 40px;
+  background: var(--border);
+  border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.6rem; color: var(--muted); text-align: center;
+  line-height: 1.2;
+}
+.footer-eu-text {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 640px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 800px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 1.5rem; }
+  .hero-stat-item { flex: 1; min-width: 120px; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .methods-grid { grid-template-columns: 1fr 1fr; }
+  .paper { grid-template-columns: 1fr; gap: 0.5rem; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .team-card { grid-template-columns: 80px 1fr; gap: 1.2rem; }
+  .team-photo, .team-photo-placeholder { width: 80px; height: 80px; }
+  .news-item { grid-template-columns: 1fr; gap: 0.3rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .pi-card { grid-template-columns: 1fr; gap: 1.2rem; }
+  .pi-avatar { width: 80px; height: 80px; font-size: 1.6rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand" onclick="showPage('home')">
+      <span class="nav-logo-mark">CONSENT</span>
+      <span class="nav-logo-text">Research Project</span>
+    </div>
+    <ul class="nav-links">
+      <li><a id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
+      <li><a id="nav-research" onclick="showPage('research')">Research</a></li>
+      <li><a id="nav-team" onclick="showPage('team')">Team</a></li>
+      <li><a id="nav-news" onclick="showPage('news')">News</a></li>
+      <li><a id="nav-contact" onclick="showPage('contact')">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══ HOME ══ -->
+<div class="page-view active" id="page-home">
+  <div class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">ERC-Funded Research · IPP-CSIC, Madrid</div>
+        <div class="hero-project-title">CONSENT.– Motivations, causes and consequences of losers' consent and its breakdown in established democracies</div>
+        <h1>Why do electoral losers accept being governed by the winners?</h1>
+        <p class="hero-desc">CONSENT investigates the motivations behind losers' consent — and what happens when it breaks down. We combine surveys, experiments, and qualitative methods to study one of democracy's foundational pillars.</p>
+        <div class="hero-btns">
+          <button class="btn btn-white" onclick="showPage('research')">View research</button>
+          <button class="btn btn-ghost" onclick="showPage('team')">Meet the team</button>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat-item">
+          <div class="hero-stat-num">20+</div>
+          <div class="hero-stat-label">Democracies studied</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-num">10+</div>
+          <div class="hero-stat-label">Countries · Survey experiments</div>
+        </div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-num">5</div>
+          <div class="hero-stat-label">Countries · Focus groups</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ribbon">
+    <div class="ribbon-inner">
+      <span class="ribbon-tag">ERC Consolidator Grant</span>
+      <span class="ribbon-sep">·</span>
+      <span>Losers' consent · Democratic legitimacy · Electoral behaviour · Affective polarisation</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="section">
+      <div class="section-label">About the project</div>
+      <div class="about-grid">
+        <div>
+          <div class="section-title">Democratic governance rests on the willingness of those who lose to accept electoral results and the rule of the resulting government.</div>
+          <p class="about-text">This project examines the conditions under which electoral losers choose to consent to the authority of winners, and the circumstances under which they withdraw that consent and the consequences for democratic governance.</p>
+          <p class="about-text">Using survey data, experiments and qualitative evidence from more than 20 democracies, we trace how elite narratives, policies, and the political context shape the willingness to accept defeat.</p>
+        </div>
+        <div>
+          <div class="section-label">Research Questions</div>
+          <ul class="rq-list">
+            <li class="rq-item"><span class="rq-n">01</span><span class="rq-text">What makes electoral losers accept electoral results and the authority of the government in democratic systems?</span></li>
+            <li class="rq-item"><span class="rq-n">02</span><span class="rq-text">How do elite narratives, policy proposals, institutions and political context moderate consent?</span></li>
+            <li class="rq-item"><span class="rq-n">03</span><span class="rq-text">When and why does losers' consent break down — and what are the consequences for democratic stability?</span></li>
+          </ul>
+          <div class="nextup-widget">
+            <div class="nextup-widget-label">Next up</div>
+            <div class="nextup-block" id="nextup-home"></div>
+            <span class="nextup-more" onclick="showPage('news')">All upcoming events →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Project Structure</div>
+      <div class="section-title">Three work packages</div>
+      <div class="wp-grid">
+        <div class="wp-card">
+          <div class="wp-header">
+            <div class="wp-tag">WP1</div>
+            <div class="wp-title">Conceptualization, typology, and measurement of consent</div>
+          </div>
+          <div class="wp-methods-block">
+            <div class="wp-method-item">Focus groups</div>
+            <div class="wp-method-item">Cross-country surveys</div>
+          </div>
+        </div>
+        <div class="wp-card">
+          <div class="wp-header">
+            <div class="wp-tag">WP2</div>
+            <div class="wp-title">The determinants of consent and its breakdown</div>
+          </div>
+          <div class="wp-methods-block">
+            <div class="wp-method-item">Longitudinal study</div>
+            <div class="wp-method-item">Survey experiments on elite narratives and policy proposals</div>
+          </div>
+        </div>
+        <div class="wp-card">
+          <div class="wp-header">
+            <div class="wp-tag">WP3</div>
+            <div class="wp-title">The consequences of the breakdown of losers' consent</div>
+          </div>
+          <div class="wp-methods-block">
+            <div class="wp-method-item">Conjoint experiments</div>
+            <div class="wp-method-item">List experiments</div>
+            <div class="wp-method-item">Cooperation experiments</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="funder-row">
+        <div class="funder-by">Funded by</div>
+        <div>
+          <div class="funder-name">European Research Council</div>
+          <div class="funder-sub">Horizon Europe Programme</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RESEARCH ══ -->
+<div class="page-view" id="page-research">
+  <div class="wrap">
+    <div class="page-head">
+      <div class="section-label">Publications &amp; outputs</div>
+      <h1>Research</h1>
+      <p>Working papers, publications, and ongoing outputs from the CONSENT project.</p>
+    </div>
+
+    <div class="section">
+      <div class="paper">
+        <div><span class="paper-badge badge-pub">Publication</span></div>
+        <div>
+          <div class="paper-title">Following the Leader Against Democracy? Evidence From the 2022 Brazilian Presidential Election</div>
+          <div class="paper-meta">Fernando Mello &amp; Ignacio Jurado · <em>Politics and Governance</em>, Vol. 14, 2026</div>
+          <div class="paper-abstract">This study uses a five-wave panel survey from Brazil's 2022 presidential campaign to examine how political alignment and trust in elections interact. Drawing on within-between models that separate stable differences between voters from changes within individuals over time, we find that supporters of then-President Jair Bolsonaro consistently trusted the electronic voting system less than other voters. Among his supporters, trust was higher for those who expected him to win and lower for those who expected him to lose. Within-person analysis also shows that shifting vote intention toward Bolsonaro is associated with declining trust. Elite cues and outcome expectations jointly shape electoral trust.</div>
+          <div style="margin-top:0.6rem;"><a href="https://doi.org/10.17645/pag.11547" target="_blank" rel="noopener" style="font-size:0.78rem; color:var(--blue-mid); text-decoration:none;">doi.org/10.17645/pag.11547 →</a></div>
+        </div>
+      </div>
+      <div class="paper">
+        <div><span class="paper-badge badge-wp">Working paper</span></div>
+        <div>
+          <div class="paper-title">Losing Elections and Democratic Consent in Polarized Contexts</div>
+          <div class="paper-meta">Ignacio Jurado &amp; Lluís Orriols</div>
+          <div class="paper-abstract">The study of democratic backsliding has overwhelmingly focused on winners and how they undermine institutions and democratic norms. The consent of electoral losers has received far less attention despite being equally central to democratic stability. As polarization intensifies, electoral defeat may be increasingly experienced as a threat rather than routine alternation of power. We conceptualize consent as acceptance of electoral outcomes and recognition of the winners' legitimacy to govern, going beyond standard reliance on satisfaction with democracy. Drawing on a pre-registered design in Spain — a polarized parliamentary democracy where the plurality winner was excluded from office in the 2023 election through a coalition agreement — we combine a five-wave panel (2023–2026) with vignette and conjoint experiments. Our results show that in a polarized context, electoral defeat generates an erosion of democratic consent that does not fade away over time. This erosion is driven by defeat itself, not by specific parliamentary dynamics of government formation. We also find a modest increase in the preference for anti-pluralistic candidates, but the erosion of consent does not translate into a full authoritarian backlash.</div>
+        </div>
+      </div>
+      <div class="paper">
+        <div><span class="paper-badge badge-prog">In progress</span></div>
+        <div>
+          <div class="paper-title">Can Highlighting the Dangers of Polarization Increase Citizens' Willingness to Act? Evidence from Brazil</div>
+          <div class="paper-meta">Simon Chauchard, Ignacio Jurado &amp; Fernando Mello</div>
+          <div class="paper-abstract">Does making the concrete costs of polarization salient lead to recognition of the problem and to voluntary action against its consequences? We study this question through a multi-wave panel experiment conducted in Brazil during the 2026 general election. Respondents are randomly assigned to two interventions emphasizing either (a) the macro-level costs of polarization for democracy and the economy or (b) its micro-level costs for social and family relationships, or to a placebo control. We posit that awareness-raising treatments may increase the salience of polarization as an issue, increase willingness to act against its consequences, improve recognition of electoral results, and strengthen commitment to democratic norms.</div>
+        </div>
+      </div>
+      <div class="paper">
+        <div><span class="paper-badge badge-prog">In progress</span></div>
+        <div>
+          <div class="paper-title">Electoral Delegitimization Rhetoric and Law Compliance</div>
+          <div class="paper-meta">Ignacio Jurado &amp; Josep Serrano-Serrat</div>
+          <div class="paper-abstract">While the relationship between electoral delegitimization and political violence has received growing scholarly attention — especially in the wake of January 6th, 2021 — less is known about its connection to less extreme forms of anti-regime behaviour, such as tax evasion or non-compliance with public health regulations. This paper argues that electoral trust shapes citizens' motivation to comply with the law, and that this link can be activated or suppressed by elite cues. We propose that delegitimizing rhetoric by political elites triggers identity-driven reasoning in voters, undermines attitudes towards the political system, and reduces willingness to comply with regulations. We test this argument through survey experiments fielded in Spain and the United States.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ TEAM ══ -->
+<div class="page-view" id="page-team">
+  <div class="wrap">
+    <div class="page-head">
+      <div class="section-label">People</div>
+      <h1>Team</h1>
+      <p>Researchers working together to understand the foundations of democratic consent.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Principal Investigator</div>
+      <div class="pi-card">
+        <div class="pi-avatar">IJ</div>
+        <div>
+          <div class="pi-name">Ignacio Jurado</div>
+          <div class="pi-role-pi">Principal Investigator</div>
+          <div class="pi-role">Distinguished Research Fellow</div>
+          <div class="pi-affil" style="margin-top:0.3rem;">IPP-CSIC, Madrid</div>
+          <div class="pi-affil" style="margin-top:0.2rem;color:var(--blue-mid);">D.Phil, University of Oxford</div>
+          <a class="pi-link" href="https://www.ignaciojurado.com" target="_blank" rel="noopener">ignaciojurado.com →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Research team</div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-photo-placeholder">AC</div>
+          <div>
+            <div class="team-name">Álvaro Canalejo-Molero</div>
+            <div class="team-role">Postdoctoral Researcher</div>
+            <div class="team-affil">IPP-CSIC, Madrid</div>
+            <div class="team-affil" style="color:var(--blue-mid);">PhD, European University Institute</div>
+            <a class="team-link" href="https://acanalejo.github.io/" target="_blank" rel="noopener">acanalejo.github.io →</a>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo-placeholder">JS</div>
+          <div>
+            <div class="team-name">Josep Serrano-Serrat</div>
+            <div class="team-role">Postdoctoral Researcher</div>
+            <div class="team-affil">IPP-CSIC, Madrid</div>
+            <div class="team-affil" style="color:var(--blue-mid);">PhD, University Carlos III of Madrid</div>
+            <a class="team-link" href="https://serranoserrat.github.io/" target="_blank" rel="noopener">serranoserrat.github.io →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Project Collaborators</div>
+      <div class="team-grid" style="margin-top:0;">
+        <div class="team-card">
+          <div class="team-photo-placeholder">SC</div>
+          <div>
+            <div class="team-name">Simon Chauchard</div>
+            <div class="team-affil">University Carlos III of Madrid</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo-placeholder">SL</div>
+          <div>
+            <div class="team-name">Sandra León</div>
+            <div class="team-affil">IPP-CSIC, Madrid</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo-placeholder">FM</div>
+          <div>
+            <div class="team-name">Fernando Mello</div>
+            <div class="team-affil">University Carlos III of Madrid</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo-placeholder">LO</div>
+          <div>
+            <div class="team-name">Lluís Orriols</div>
+            <div class="team-affil">University Carlos III of Madrid</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NEWS ══ -->
+<div class="page-view" id="page-news">
+  <div class="wrap">
+    <div class="page-head">
+      <div class="section-label">Updates</div>
+      <h1>News</h1>
+      <p>Conference presentations, workshops, new publications, and project milestones.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Upcoming</div>
+      <div class="upcoming-cards" id="upcoming-cards"></div>
+    </div>
+
+    <div class="section">
+      <div class="news-milestones-grid">
+        <div>
+          <div class="section-label">Talks</div>
+          <div class="news-item" style="border-top: 1px solid var(--border);">
+            <div class="news-date">Sep 2026</div>
+            <div>
+              <div class="news-title">AECPA Conference, Granada</div>
+              <div class="news-body">Álvaro Canalejo-Molero and Josep Serrano-Serrat present project work at the conference of the Spanish Association of Political Science and Public Administration (AECPA) in Granada.</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Sep 2026</div>
+            <div>
+              <div class="news-title">APSA Conference, Boston</div>
+              <div class="news-body">Ignacio Jurado presents project results at the Annual Meeting of the American Political Science Association (APSA) in Boston.</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Jun 2026</div>
+            <div>
+              <div class="news-title">EPSS inaugural conference, Belfast</div>
+              <div class="news-body">Josep Serrano-Serrat presents project work at the inaugural meeting of the European Political Science Society (EPSS) in Belfast.</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Jun 2026</div>
+            <div>
+              <div class="news-title">ECSR Conference, Dublin</div>
+              <div class="news-body">Josep Serrano-Serrat presents project work at the European Consortium for Sociological Research (ECSR) conference in Dublin.</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">May 2026</div>
+            <div>
+              <div class="news-title">Seminar at the University of York</div>
+              <div class="news-body">Ignacio Jurado presents project work at a research seminar at the University of York.</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Jan 2026</div>
+            <div>
+              <div class="news-title">Comparative Political Economy Seminar, Nuffield College</div>
+              <div class="news-body">Josep Serrano-Serrat presents <em>Bordering on Discontent: The Political Consequences of Border Liberalization</em> at the Comparative Political Economy Seminar, Nuffield College, University of Oxford.</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Dec 2025</div>
+            <div>
+              <div class="news-title">Seminar at the University of Glasgow</div>
+              <div class="news-body">Ignacio Jurado presents the background and motivations of the CONSENT project at a research seminar at the University of Glasgow.</div>
+            </div>
+          </div>
+          <div class="news-item">
+            <div class="news-date">Nov 2025</div>
+            <div>
+              <div class="news-title">Presentation at the University of Oxford</div>
+              <div class="news-body">Ignacio Jurado presents the CONSENT project at the European Studies Centre of the University of Oxford. <a href="https://www.youtube.com/watch?v=zsgfnCw0iPs" target="_blank" rel="noopener" style="color:var(--blue-mid);">Watch the video of the talk →</a></div>
+            </div>
+          </div>
+          <div style="padding-top:2rem;">
+            <button class="btn btn-outline" onclick="showPage('contact')">Get in touch</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-label">Milestones</div>
+          <div class="milestone-list">
+            <div class="milestone-item">
+              <div class="milestone-date">Sep 2026</div>
+              <div>
+                <div class="milestone-title">New team member</div>
+                <div class="milestone-body">Álvaro Canalejo-Molero officially joins the CONSENT team as a postdoctoral researcher at IPP-CSIC, Madrid.</div>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-date">Jun 2026</div>
+              <div>
+                <div class="milestone-title">Panel survey in Brazil initiated</div>
+                <div class="milestone-body">Launch of a multi-wave panel survey in Brazil, part of the project's cross-national data collection on electoral legitimacy and democratic consent.</div>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-date">Jun 2026</div>
+              <div>
+                <div class="milestone-title">Focus group fieldwork completed</div>
+                <div class="milestone-body">Completion of qualitative data collection across five countries — Spain, the United States, Brazil, Hungary, and South Korea.</div>
+              </div>
+            </div>
+            <div class="milestone-item">
+              <div class="milestone-date">Apr 2026</div>
+              <div>
+                <div class="milestone-title">First project publication</div>
+                <div class="milestone-body"><em>Following the Leader Against Democracy? Evidence From the 2022 Brazilian Presidential Election</em> — Fernando Mello &amp; Ignacio Jurado — published in <em>Politics and Governance</em>, Vol. 14. <a href="https://doi.org/10.17645/pag.11547" target="_blank" rel="noopener" style="color:var(--blue-mid);">doi.org/10.17645/pag.11547 →</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<div class="page-view" id="page-contact">
+  <div class="wrap">
+    <div class="page-head">
+      <div class="section-label">Get in touch</div>
+      <h1>Contact</h1>
+      <p>Questions, collaboration enquiries, or media requests — we'd love to hear from you.</p>
+    </div>
+
+    <div class="section">
+      <div class="contact-grid">
+        <div>
+          <div class="ci-label">Principal Investigator</div>
+          <div class="ci-val">Ignacio Jurado</div>
+          <div class="ci-label">Institution</div>
+          <div class="ci-val">Institute of Public Goods and Policies (IPP-CSIC)<br>Albasanz 26-28<br>28037 Madrid, Spain</div>
+          <div class="ci-label">Email</div>
+          <div class="ci-val"><a href="mailto:ignacio.jurado@csic.es">ignacio.jurado@csic.es</a></div>
+          <div class="ci-label">Personal website</div>
+          <div class="ci-val"><a href="https://www.ignaciojurado.com" target="_blank" rel="noopener">ignaciojurado.com</a></div>
+        </div>
+        <div>
+          <form onsubmit="handleSubmit(event)">
+            <div><label for="c-name">Name</label><input type="text" id="c-name" placeholder="Your name"></div>
+            <div><label for="c-email">Email</label><input type="email" id="c-email" placeholder="your@email.com"></div>
+            <div><label for="c-sub">Subject</label><input type="text" id="c-sub" placeholder="What is this about?"></div>
+            <div><label for="c-msg">Message</label><textarea id="c-msg" placeholder="Your message…"></textarea></div>
+            <button type="submit" class="btn btn-primary">Send message</button>
+          </form>
+          <div id="form-ok" hidden style="margin-top:1rem;">Message received — we'll be in touch shortly.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-mark">CONSENT</div>
+      <div class="footer-copy">Losers' Consent in Established Democracies · ERC Project · IPP-CSIC, Madrid</div>
+    </div>
+    <ul class="footer-links">
+      <li><a onclick="showPage('research')">Research</a></li>
+      <li><a onclick="showPage('team')">Team</a></li>
+      <li><a onclick="showPage('news')">News</a></li>
+      <li><a onclick="showPage('contact')">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-inner">
+    <div class="footer-eu">
+      <div class="footer-eu-logos">
+        <div class="eu-logo-placeholder">EU<br>Flag</div>
+        <div class="eu-logo-placeholder">ERC<br>Logo</div>
+      </div>
+      <p class="footer-eu-text">This project has received funding from the European Research Council (ERC) under the European Union's Horizon Europe research and innovation programme (Grant agreement No. 101170551).</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Single source of truth for upcoming events ──────────────────────
+const UPCOMING = [
+  {
+    date: '22–23 Oct 2026',
+    title: 'MESS Conference, IPP-CSIC',
+    body: 'The CONSENT team members present at the Madrid Empirical Social Sciences (MESS) Conference, hosted at IPP-CSIC, Madrid.'
+  },
+  {
+    date: '12 Nov 2026',
+    title: 'Seminar at the Universidad Autónoma de Madrid',
+    body: 'Ignacio Jurado presents <em>Electoral Delegitimization Rhetoric and Law Compliance</em> at a research seminar at the Universidad Autónoma de Madrid.'
+  },
+  {
+    date: '17 Feb 2027',
+    title: 'Talk at Comillas University',
+    body: 'Ignacio Jurado presents project work at Comillas Pontifical University, Madrid.'
+  }
+];
+
+function renderUpcoming() {
+  // Home "Next up" rows
+  const homeEl = document.getElementById('nextup-home');
+  if (homeEl) {
+    homeEl.innerHTML = UPCOMING.map(ev => `
+      <div class="nextup-row" onclick="showPage('news')">
+        <div class="nextup-date">${ev.date}</div>
+        <div class="nextup-title">${ev.title}</div>
+      </div>`).join('');
+  }
+  // News "Upcoming" cards
+  const newsEl = document.getElementById('upcoming-cards');
+  if (newsEl) {
+    newsEl.innerHTML = UPCOMING.map(ev => `
+      <div class="upcoming-card">
+        <div class="upcoming-card-date">${ev.date}</div>
+        <div class="upcoming-card-title">${ev.title}</div>
+        <div class="upcoming-card-body">${ev.body}</div>
+      </div>`).join('');
+  }
+}
+
+function showPage(id) {
+  document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(el => el.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function handleSubmit(e) {
+  e.preventDefault();
+  e.target.hidden = true;
+  document.getElementById('form-ok').hidden = false;
+}
+
+renderUpcoming();
+</script>
