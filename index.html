@@ -238,6 +238,9 @@ nav {
 #page-team .section {
   padding-block: 2rem;
 }
+#page-news .section {
+  padding-block: 2rem;
+}
 .section-title {
   font-family: 'Source Serif 4', Georgia, serif;
   font-size: 1.55rem; font-weight: 400;
@@ -433,6 +436,53 @@ nav {
 .news-date { font-size: 0.75rem; color: var(--muted); }
 .news-title { font-size: 0.95rem; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
 .news-body { font-size: 0.85rem; line-height: 1.7; font-weight: 300; }
+
+/* ── Recent news cards ── */
+.recent-news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.recent-news-card {
+  background: #f0faf5;
+  border: 1px solid #b6dfc9;
+  border-radius: 3px;
+  padding: 1rem 1.2rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .recent-news-card { background: #0d2a1e; border-color: #1e5038; }
+}
+:root[data-theme="dark"] .recent-news-card { background: #0d2a1e; border-color: #1e5038; }
+.recent-news-card-date {
+  font-size: 0.7rem;
+  color: #2A9D6F;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.35rem;
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.recent-news-card-date::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #2A9D6F;
+  flex-shrink: 0;
+}
+.recent-news-card-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-bottom: 0.3rem;
+}
+.recent-news-card-body {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  font-weight: 300;
+  color: var(--body);
+}
 
 /* ── News + Milestones two-column layout ── */
 .news-milestones-grid {
@@ -798,7 +848,7 @@ footer {
       </div>
       <div class="hero-stats">
         <div style="margin-bottom:1.2rem; padding-bottom:1.2rem; border-bottom:1px solid rgba(255,255,255,0.15);">
-          <img src="images/LOGO_ERC-FLAG_EU.png" alt="ERC – Funded by the European Union" style="height:150px; width:auto; background:#fff; padding:12px 20px; border-radius:3px;">
+          <img src="images/LOGO_ERC-FLAG_EU.png" alt="ERC – Funded by the European Union" style="height:170px; width:auto; background:#fff; padding:12px 20px; border-radius:3px;">
         </div>
         <div class="hero-stat-item">
           <div class="hero-stat-num">20+</div>
@@ -917,14 +967,6 @@ footer {
         </div>
       </div>
       <div class="paper">
-        <div><span class="paper-badge badge-wp">Working paper</span></div>
-        <div>
-          <div class="paper-title">Winner Animosity, Losers’ Dissent and the Rationales of Contestation</div>
-          <div class="paper-meta"><span class="paper-authors">Álvaro Canalejo-Molero &amp; Morgan Le Corre Juratic</span></div>
-          <div class="paper-abstract">The losers’ consent principle—that in democracies losers must accept and comply with electoral defeat—appears increasingly challenged. This erosion has been linked to affective polarization, yet the precise connection between the two phenomena remains underspecified. We advance and test a novel theoretical framework, arguing that animosity toward the election winner—the party expected to control executive power—motivates losers to contest results due to anticipated harmful government actions. Using an original pre-registered experiment fielded during Austria’s 2024 elections and a regression-discontinuity design with global data, we show that losing to one’s most disliked party lowers democratic satisfaction and raises support for contestation. Mixed-methods analyses reveal these reactions stem from substantive concerns about policy and undemocratic actions by the winner, not mere emotion. Our findings clarify a pathway from affective polarization to losers’ dissent, via winner animosity, and raise normative questions about the role of consent in democracy when contestation reflects militant democracy rationales.</div>
-        </div>
-      </div>
-      <div class="paper">
         <div><span class="paper-badge badge-prog">In progress</span></div>
         <div>
           <div class="paper-title">Losers' Consent: Foundations, Causes, and Consequences of an Elusive Concept</div>
@@ -1009,15 +1051,13 @@ footer {
           <div>
             <div class="team-name">Simon Chauchard</div>
             <div class="team-affil">University Carlos III of Madrid</div>
-            <a class="team-link" href="https://www.simonchauchard.com/" target="_blank" rel="noopener">simonchauchard.com →</a>
           </div>
         </div>
         <div class="team-card">
-          <img class="team-photo" src="images/sandra.png" alt="Sandra León">
+          <img class="team-photo" src="images/sandra.jpeg" alt="Sandra León">
           <div>
             <div class="team-name">Sandra León</div>
             <div class="team-affil">IPP-CSIC, Madrid</div>
-            <a class="team-link" href="https://sandraleon.eu/" target="_blank" rel="noopener">sandraleon.eu →</a>
           </div>
         </div>
         <div class="team-card">
@@ -1025,7 +1065,6 @@ footer {
           <div>
             <div class="team-name">Fernando Mello</div>
             <div class="team-affil">University Carlos III of Madrid</div>
-            <a class="team-link" href="https://www.fernandobmello.com/" target="_blank" rel="noopener">fernandobmello.com →</a>
           </div>
         </div>
         <div class="team-card">
@@ -1033,7 +1072,6 @@ footer {
           <div>
             <div class="team-name">Lluís Orriols</div>
             <div class="team-affil">University Carlos III of Madrid</div>
-            <a class="team-link" href="https://lluisorriols.com/" target="_blank" rel="noopener">lluisorriols.com →</a>
           </div>
         </div>
       </div>
@@ -1053,6 +1091,32 @@ footer {
     <div class="section">
       <div class="section-label">Upcoming</div>
       <div class="upcoming-cards" id="upcoming-cards"></div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Recent news</div>
+      <div class="recent-news-grid" id="recent-news-grid">
+        <!-- visible: las 3 más recientes -->
+        <div class="recent-news-card">
+          <div class="recent-news-card-date">20 Sep 2026</div>
+          <div class="recent-news-card-title">«El mal perder»</div>
+          <div class="recent-news-card-body">Ignacio Jurado and Sandra León publish a long read on the importance of electoral losers in democracy in <em>Alerta Democrática</em>, eldiario.es magazine.</div>
+        </div>
+        <div class="recent-news-card">
+          <div class="recent-news-card-date">1 Sep 2026</div>
+          <div class="recent-news-card-title">Álvaro Canalejo-Molero joins the team</div>
+          <div class="recent-news-card-body">New postdoctoral researcher at IPP-CSIC, Madrid.</div>
+        </div>
+        <div class="recent-news-card">
+          <div class="recent-news-card-date">Apr 2026</div>
+          <div class="recent-news-card-title">First project publication</div>
+          <div class="recent-news-card-body"><em>Following the Leader Against Democracy?</em> published in <em>Politics and Governance</em>.</div>
+        </div>
+        <!-- archivo: añadir aquí las noticias antiguas con class="recent-news-archived" -->
+      </div>
+      <div id="recent-news-toggle" style="display:none; margin-top:1rem;">
+        <button onclick="toggleOldNews()" id="recent-news-btn" style="background:none; border:none; color:var(--blue-mid); font-size:0.82rem; font-weight:500; cursor:pointer; padding:0; font-family:inherit;">Ver todas las noticias ↓</button>
+      </div>
     </div>
 
     <div class="section">
@@ -1123,13 +1187,6 @@ footer {
         <div>
           <div class="section-label">Milestones</div>
           <div class="milestone-list">
-            <div class="milestone-item">
-              <div class="milestone-date">Sep 2026</div>
-              <div>
-                <div class="milestone-title">New team member</div>
-                <div class="milestone-body">Álvaro Canalejo-Molero officially joins the CONSENT team as a postdoctoral researcher at IPP-CSIC, Madrid.</div>
-              </div>
-            </div>
             <div class="milestone-item">
               <div class="milestone-date">Jun 2026</div>
               <div>
@@ -1258,6 +1315,25 @@ function renderUpcoming() {
       </div>`).join('');
   }
 }
+
+// ── Recent news archive toggle ──
+(function() {
+  function initNewsToggle() {
+    const archived = document.querySelectorAll('.recent-news-archived');
+    const toggle = document.getElementById('recent-news-toggle');
+    const btn = document.getElementById('recent-news-btn');
+    if (!archived.length || !toggle) return;
+    archived.forEach(el => el.hidden = true);
+    toggle.style.display = 'block';
+    let expanded = false;
+    btn.addEventListener('click', function() {
+      expanded = !expanded;
+      archived.forEach(el => el.hidden = !expanded);
+      btn.textContent = expanded ? 'Ocultar noticias anteriores ↑' : 'Ver todas las noticias ↓';
+    });
+  }
+  document.addEventListener('DOMContentLoaded', initNewsToggle);
+})();
 
 function showPage(id) {
   document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
